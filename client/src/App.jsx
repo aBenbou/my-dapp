@@ -16,8 +16,8 @@ function App() {
         signer: null,
         contract: null,
     })
-    // const { state: s, setProvider } = useContext(Context)
-    // console.log({ state: s })
+
+    
     const [connected, setConnected] = useState(false)
     const [cid, setCid] = useState('')
     const [signature, setSignature] = useState('')
@@ -36,7 +36,7 @@ function App() {
                 // switching to correct network
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0xaa36a7' }], // chainId must be in hexadecimal
+                    params: [{ chainId: '0x539' }], // 1337 chainId must be in hexadecimal
                 })
                 setAccount(accounts[0])
 
@@ -63,7 +63,7 @@ function App() {
     }
 
     async function uploadImg() {
-        console.log('upppload image calllled')
+        console.log('upload image called')
 
         const formData = new FormData()
         const file = document.getElementById('file').files[0]
@@ -71,7 +71,7 @@ function App() {
         console.log('file is : ', file)
         if (!file) {
             console.log('file not uploaded')
-            toast.error('please select the certificate first!', {
+            toast.error('Select the certificate first!', {
                 position: 'top-right',
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -104,9 +104,8 @@ function App() {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    pinata_api_key: import.meta.env.VITE_PINATA_API_KEY,
-                    pinata_secret_api_key: import.meta.env
-                        .VITE_PINATA_SECRET_API_KEY,
+                    pinata_api_key: 'b3844e734abf1d8a438f',
+                    pinata_secret_api_key: '85b2a11d757319e0632bc602f8de7eb703287f3c407dae752916a9d0c83ac165',
                 },
             }
         )
@@ -171,7 +170,7 @@ function App() {
         console.log(signature)
         console.log(account)
 
-        console.log('sendign transactoin...')
+        console.log('sending transaction...')
 
         toast.info('Transaction submitted to the blockchain!', {
             position: "top-right",
@@ -247,8 +246,7 @@ function App() {
         <div className='bg-[#E4E4D0] min-h-screen max-h-full'>
             <div className='flex justify-between items-center bg-[#94A684] '>
                 <div className='m-4 ml-8 text-2xl '>
-                    {/* Certificate Verification dApp */}
-                    <span className='font-bold'>CERTTRUST</span>
+                    <span className='font-bold'>DEMO</span>
                 </div>
                 <div className='mx-8 my-2'>
                     <button
@@ -297,23 +295,20 @@ function App() {
                         <div className='flex flex-col md:flex-row w-screen '>
                             <div className='md:w-1/2 p-4'>
                                 <div className='text-2xl  font-bold'>
-                                    Certificate verification dapp
+                                    Document verification dapp
                                 </div>
                                 <div className='text-xl'>
-                                    This application solves the problem of
-                                    certificate counterfeiting in today's world.
-                                    The Organizations can sign the certificate
-                                    provided to the candidate using their
-                                    private key and anyone can verify the same
-                                    using the signature provided to the receiver
-                                    alongwith the cid and the public key of the
-                                    signing organization
+                                This application addresses the issue of certificate counterfeiting 
+                                prevalent in today's world. Organizations can digitally sign certificates 
+                                issued to candidates using their private keys. Anyone can then verify the 
+                                authenticity of these certificates using the signature provided to the 
+                                recipient, along with the CID and the public key of the issuing organization.
                                 </div>
                                 <div className='text-xl underline font-semibold'>
                                     steps involved:
                                 </div>
                                 <ol className='list-decimal ml-4 list-outside text-xl'>
-                                    <li>upload certificate to the IPFS</li>
+                                    <li>upload document to the IPFS</li>
                                     <li>
                                         sign the generated CID using the
                                         organization's private key
@@ -396,7 +391,7 @@ function App() {
                                             className='bg-[#AEC3AE] w-full p-4 rounded-md m-4'
                                             onClick={saveData}
                                         >
-                                            save to blockchain
+                                            Save to blockchain
                                         </button>
                                     )}
                                 </div>
@@ -424,7 +419,7 @@ function App() {
                                             provided input fields
                                         </li>
                                         <li>
-                                            If you have address of the
+                                            If you have the address of the
                                             organization as well, choose the
                                             option given below and paste the
                                             organization's address as well
@@ -608,7 +603,7 @@ function App() {
                                             <div className='flex items-center gap-2'>
                                                 <div>cid: {tx.cid}</div>
                                                 <a
-                                                    href={`ipfs://${tx.cid}/`}
+                                                    href={`https://gateway.pinata.cloud/ipfs/${tx.cid}`}
                                                     target='_blank'
                                                     rel='noopener noreferrer'
                                                 >
