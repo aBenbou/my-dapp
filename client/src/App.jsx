@@ -104,8 +104,8 @@ function App() {
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    pinata_api_key: 'b3844e734abf1d8a438f',
-                    pinata_secret_api_key: '85b2a11d757319e0632bc602f8de7eb703287f3c407dae752916a9d0c83ac165',
+                    pinata_api_key: '#####',
+                    pinata_secret_api_key: '####',
                 },
             }
         )
